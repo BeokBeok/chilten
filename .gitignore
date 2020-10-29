@@ -175,6 +175,7 @@ obj/
 .idea/libraries/
 .idea/shelf/
 .idea/inspectionProfiles/
+.idea/codeStyles/
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
