@@ -25,7 +25,7 @@ object ActivityMain {
                 savedInstanceState { BottomNavigationType.HOME }
             Column {
                 Surface(modifier = Modifier.weight(1f)) {
-
+                    Unit
                 }
                 BottomNavigationContent(state = bottomNavigationState)
             }
@@ -74,13 +74,14 @@ object ActivityMain {
                             .resource
                             .resource
                             .also { if (it == null) return@BottomNavigation }
+            val iconSize = Modifier.size(24.dp)
 
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.HOME) {
-                        Icon(asset = homeSelectAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = homeSelectAsset!!, modifier = iconSize)
                     } else {
-                        Icon(asset = homeAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = homeAsset!!, modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.HOME,
@@ -94,9 +95,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.BOWLING_GYM) {
-                        Icon(asset = bowlingGymSelectAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = bowlingGymSelectAsset!!, modifier = iconSize)
                     } else {
-                        Icon(asset = bowlingGymAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = bowlingGymAsset!!, modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.BOWLING_GYM,
@@ -110,9 +111,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.CLUB) {
-                        Icon(asset = clubSelectAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = clubSelectAsset!!, modifier = iconSize)
                     } else {
-                        Icon(asset = clubAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = clubAsset!!, modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.CLUB,
@@ -126,9 +127,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.MY_BOWLING) {
-                        Icon(asset = myBowlingSelectAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = myBowlingSelectAsset!!, modifier = iconSize)
                     } else {
-                        Icon(asset = myBowlingAsset!!, modifier = Modifier.size(24.dp))
+                        Icon(asset = myBowlingAsset!!, modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.MY_BOWLING,
