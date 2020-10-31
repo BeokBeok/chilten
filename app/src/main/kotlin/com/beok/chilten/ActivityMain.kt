@@ -11,12 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.vector.VectorAssetBuilder
 import androidx.compose.ui.res.loadVectorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.ui.ChiltenTheme
 
 object ActivityMain {
+
+    private const val DEFAULT_VECTOR_ASSET_NAME = "default"
+    private const val DEFAULT_ICON_SIZE = 24
 
     @Composable
     fun Layout() {
@@ -38,50 +43,29 @@ object ActivityMain {
         state: MutableState<BottomNavigationType>
     ) {
         BottomNavigation(modifier = modifier) {
-            val (homeAsset, homeSelectAsset) =
-                loadVectorResource(id = R.drawable.ic_navi_home)
-                    .resource
-                    .resource
-                    .also { if (it == null) return@BottomNavigation } to
-                        loadVectorResource(id = R.drawable.ic_navi_home_select)
-                            .resource
-                            .resource
-                            .also { if (it == null) return@BottomNavigation }
-            val (bowlingGymAsset, bowlingGymSelectAsset) =
-                loadVectorResource(id = R.drawable.ic_navi_bowling_gym)
-                    .resource
-                    .resource
-                    .also { if (it == null) return@BottomNavigation } to
-                        loadVectorResource(id = R.drawable.ic_navi_bowling_gym_select)
-                            .resource
-                            .resource
-                            .also { if (it == null) return@BottomNavigation }
-            val (clubAsset, clubSelectAsset) =
-                loadVectorResource(id = R.drawable.ic_navi_club)
-                    .resource
-                    .resource
-                    .also { if (it == null) return@BottomNavigation } to
-                        loadVectorResource(id = R.drawable.ic_navi_club_select)
-                            .resource
-                            .resource
-                            .also { if (it == null) return@BottomNavigation }
-            val (myBowlingAsset, myBowlingSelectAsset) =
-                loadVectorResource(id = R.drawable.ic_navi_my_bowling)
-                    .resource
-                    .resource
-                    .also { if (it == null) return@BottomNavigation } to
-                        loadVectorResource(id = R.drawable.ic_navi_my_bowling_select)
-                            .resource
-                            .resource
-                            .also { if (it == null) return@BottomNavigation }
+            val (normalAssets, selectAssets) = makeVectorAssetList(
+                idList = listOf(
+                    R.drawable.ic_navi_home,
+                    R.drawable.ic_navi_bowling_gym,
+                    R.drawable.ic_navi_club,
+                    R.drawable.ic_navi_my_bowling
+                )
+            ) to makeVectorAssetList(
+                idList = listOf(
+                    R.drawable.ic_navi_home_select,
+                    R.drawable.ic_navi_bowling_gym_select,
+                    R.drawable.ic_navi_club_select,
+                    R.drawable.ic_navi_my_bowling_select
+                )
+            )
             val iconSize = Modifier.size(24.dp)
 
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.HOME) {
-                        Icon(asset = homeSelectAsset!!, modifier = iconSize)
+                        Icon(asset = selectAssets[0], modifier = iconSize)
                     } else {
-                        Icon(asset = homeAsset!!, modifier = iconSize)
+                        Icon(asset = normalAssets[0], modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.HOME,
@@ -95,9 +79,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.BOWLING_GYM) {
-                        Icon(asset = bowlingGymSelectAsset!!, modifier = iconSize)
+                        Icon(asset = selectAssets[1], modifier = iconSize)
                     } else {
-                        Icon(asset = bowlingGymAsset!!, modifier = iconSize)
+                        Icon(asset = normalAssets[1], modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.BOWLING_GYM,
@@ -111,9 +95,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.CLUB) {
-                        Icon(asset = clubSelectAsset!!, modifier = iconSize)
+                        Icon(asset = selectAssets[2], modifier = iconSize)
                     } else {
-                        Icon(asset = clubAsset!!, modifier = iconSize)
+                        Icon(asset = normalAssets[2], modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.CLUB,
@@ -127,9 +111,9 @@ object ActivityMain {
             BottomNavigationItem(
                 icon = {
                     if (state.value == BottomNavigationType.MY_BOWLING) {
-                        Icon(asset = myBowlingSelectAsset!!, modifier = iconSize)
+                        Icon(asset = selectAssets[3], modifier = iconSize)
                     } else {
-                        Icon(asset = myBowlingAsset!!, modifier = iconSize)
+                        Icon(asset = normalAssets[3], modifier = iconSize)
                     }
                 },
                 selected = state.value == BottomNavigationType.MY_BOWLING,
@@ -141,5 +125,30 @@ object ActivityMain {
                 }
             )
         }
+    }
+
+    @Composable
+    private fun makeVectorAssetList(idList: List<Int>): List<VectorAsset> {
+        if (idList.isNullOrEmpty()) return emptyList()
+
+        val vectorAssets = mutableListOf<VectorAsset>()
+        val defaultVectorAsset = VectorAssetBuilder(
+            name = DEFAULT_VECTOR_ASSET_NAME,
+            defaultWidth = DEFAULT_ICON_SIZE.dp,
+            defaultHeight = DEFAULT_ICON_SIZE.dp,
+            viewportWidth = DEFAULT_ICON_SIZE.toFloat(),
+            viewportHeight = DEFAULT_ICON_SIZE.toFloat()
+        )
+            .build()
+
+        idList.forEach {
+            vectorAssets.add(
+                loadVectorResource(id = it)
+                    .resource
+                    .resource
+                    ?: defaultVectorAsset
+            )
+        }
+        return vectorAssets
     }
 }
