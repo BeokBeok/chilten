@@ -62,11 +62,11 @@ object ActivityMain {
 
             BottomNavigationItem(
                 icon = {
-                    if (state.value == BottomNavigationType.HOME) {
-                        Icon(asset = selectAssets[0], modifier = iconSize)
-                    } else {
-                        Icon(asset = normalAssets[0], modifier = iconSize)
-                    }
+                    setupIcon(
+                        iconSize = iconSize,
+                        isSelect = state.value == BottomNavigationType.HOME,
+                        normalToSelectAsset = normalAssets[0] to selectAssets[0]
+                    )
                 },
                 selected = state.value == BottomNavigationType.HOME,
                 onClick = {
@@ -78,11 +78,11 @@ object ActivityMain {
             )
             BottomNavigationItem(
                 icon = {
-                    if (state.value == BottomNavigationType.BOWLING_GYM) {
-                        Icon(asset = selectAssets[1], modifier = iconSize)
-                    } else {
-                        Icon(asset = normalAssets[1], modifier = iconSize)
-                    }
+                    setupIcon(
+                        iconSize = iconSize,
+                        isSelect = state.value == BottomNavigationType.BOWLING_GYM,
+                        normalToSelectAsset = normalAssets[1] to selectAssets[1]
+                    )
                 },
                 selected = state.value == BottomNavigationType.BOWLING_GYM,
                 onClick = {
@@ -94,11 +94,11 @@ object ActivityMain {
             )
             BottomNavigationItem(
                 icon = {
-                    if (state.value == BottomNavigationType.CLUB) {
-                        Icon(asset = selectAssets[2], modifier = iconSize)
-                    } else {
-                        Icon(asset = normalAssets[2], modifier = iconSize)
-                    }
+                    setupIcon(
+                        iconSize = iconSize,
+                        isSelect = state.value == BottomNavigationType.CLUB,
+                        normalToSelectAsset = normalAssets[2] to selectAssets[2]
+                    )
                 },
                 selected = state.value == BottomNavigationType.CLUB,
                 onClick = {
@@ -110,11 +110,11 @@ object ActivityMain {
             )
             BottomNavigationItem(
                 icon = {
-                    if (state.value == BottomNavigationType.MY_BOWLING) {
-                        Icon(asset = selectAssets[3], modifier = iconSize)
-                    } else {
-                        Icon(asset = normalAssets[3], modifier = iconSize)
-                    }
+                    setupIcon(
+                        iconSize = iconSize,
+                        isSelect = state.value == BottomNavigationType.MY_BOWLING,
+                        normalToSelectAsset = normalAssets[3] to selectAssets[3]
+                    )
                 },
                 selected = state.value == BottomNavigationType.MY_BOWLING,
                 onClick = {
@@ -124,6 +124,19 @@ object ActivityMain {
                     Text(text = stringResource(id = R.string.navi_my_bowling))
                 }
             )
+        }
+    }
+
+    @Composable
+    private fun setupIcon(
+        iconSize: Modifier = Modifier,
+        isSelect: Boolean,
+        normalToSelectAsset: Pair<VectorAsset, VectorAsset>,
+    ) {
+        if (isSelect) {
+            Icon(asset = normalToSelectAsset.second, modifier = iconSize)
+        } else {
+            Icon(asset = normalToSelectAsset.first, modifier = iconSize)
         }
     }
 
