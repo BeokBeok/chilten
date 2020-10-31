@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Chilten</string>
+    <string name="navi_home">홈</string>
+    <string name="navi_my_bowling">나의 볼링</string>
+    <string name="navi_club">클럽</string>
+    <string name="navi_bowling_gym">볼링장</string>
 </resources>
