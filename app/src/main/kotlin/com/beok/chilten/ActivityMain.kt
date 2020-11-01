@@ -58,72 +58,32 @@ object ActivityMain {
                     R.drawable.ic_navi_my_bowling_select
                 )
             )
+            val naviTexts = listOf(
+                R.string.navi_home,
+                R.string.navi_bowling_gym,
+                R.string.navi_club,
+                R.string.navi_my_bowling
+            )
             val iconSize = Modifier.size(24.dp)
 
-            BottomNavigationItem(
-                icon = {
-                    setupIcon(
-                        iconSize = iconSize,
-                        isSelect = state.value == BottomNavigationType.HOME,
-                        normalToSelectAsset = normalAssets[0] to selectAssets[0]
-                    )
-                },
-                selected = state.value == BottomNavigationType.HOME,
-                onClick = {
-                    state.value = BottomNavigationType.HOME
-                },
-                label = {
-                    Text(text = stringResource(id = R.string.navi_home))
-                }
-            )
-            BottomNavigationItem(
-                icon = {
-                    setupIcon(
-                        iconSize = iconSize,
-                        isSelect = state.value == BottomNavigationType.BOWLING_GYM,
-                        normalToSelectAsset = normalAssets[1] to selectAssets[1]
-                    )
-                },
-                selected = state.value == BottomNavigationType.BOWLING_GYM,
-                onClick = {
-                    state.value = BottomNavigationType.BOWLING_GYM
-                },
-                label = {
-                    Text(text = stringResource(id = R.string.navi_bowling_gym))
-                }
-            )
-            BottomNavigationItem(
-                icon = {
-                    setupIcon(
-                        iconSize = iconSize,
-                        isSelect = state.value == BottomNavigationType.CLUB,
-                        normalToSelectAsset = normalAssets[2] to selectAssets[2]
-                    )
-                },
-                selected = state.value == BottomNavigationType.CLUB,
-                onClick = {
-                    state.value = BottomNavigationType.CLUB
-                },
-                label = {
-                    Text(text = stringResource(id = R.string.navi_club))
-                }
-            )
-            BottomNavigationItem(
-                icon = {
-                    setupIcon(
-                        iconSize = iconSize,
-                        isSelect = state.value == BottomNavigationType.MY_BOWLING,
-                        normalToSelectAsset = normalAssets[3] to selectAssets[3]
-                    )
-                },
-                selected = state.value == BottomNavigationType.MY_BOWLING,
-                onClick = {
-                    state.value = BottomNavigationType.MY_BOWLING
-                },
-                label = {
-                    Text(text = stringResource(id = R.string.navi_my_bowling))
-                }
-            )
+            for (position in normalAssets.indices) {
+                BottomNavigationItem(
+                    icon = {
+                        setupIcon(
+                            iconSize = iconSize,
+                            isSelect = state.value == BottomNavigationType.findByOrdinal(position),
+                            normalToSelectAsset = normalAssets[position] to selectAssets[position]
+                        )
+                    },
+                    selected = state.value == BottomNavigationType.findByOrdinal(position),
+                    onClick = {
+                        state.value = BottomNavigationType.findByOrdinal(position)
+                    },
+                    label = {
+                        Text(text = stringResource(id = naviTexts[position]))
+                    }
+                )
+            }
         }
     }
 
