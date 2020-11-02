@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Surface
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
@@ -26,9 +27,19 @@ object ActivityMain {
     @Composable
     fun Layout() {
         ChiltenTheme {
-            val bottomNavigationState: MutableState<BottomNavigationType> =
-                savedInstanceState { BottomNavigationType.HOME }
+            TopAppBar(
+                title = { Unit },
+                navigationIcon = {
+                    Icon(
+                        asset = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
+                            .first()
+                    )
+                }
+            )
             Column {
+                val bottomNavigationState: MutableState<BottomNavigationType> =
+                    savedInstanceState { BottomNavigationType.HOME }
+
                 Surface(modifier = Modifier.weight(1f)) {
                     Unit
                 }
