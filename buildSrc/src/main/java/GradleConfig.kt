@@ -4,7 +4,7 @@ object Version {
 }
 
 object ProjectConfig {
-    const val GRADLE = "com.android.tools.build:gradle:4.2.0-alpha14"
+    const val GRADLE = "com.android.tools.build:gradle:4.2.0-alpha15"
     const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KOTLIN}"
 }
 
