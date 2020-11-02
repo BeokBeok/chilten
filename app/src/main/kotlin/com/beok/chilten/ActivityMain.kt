@@ -7,22 +7,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Surface
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
-import androidx.compose.ui.graphics.vector.VectorAssetBuilder
-import androidx.compose.ui.res.loadVectorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.ui.ChiltenTheme
 
 object ActivityMain {
-
-    private const val DEFAULT_VECTOR_ASSET_NAME = "default"
-    private const val DEFAULT_ICON_SIZE = 24
 
     @Composable
     fun Layout() {
@@ -116,22 +111,9 @@ object ActivityMain {
         if (idList.isNullOrEmpty()) return emptyList()
 
         val vectorAssets = mutableListOf<VectorAsset>()
-        val defaultVectorAsset = VectorAssetBuilder(
-            name = DEFAULT_VECTOR_ASSET_NAME,
-            defaultWidth = DEFAULT_ICON_SIZE.dp,
-            defaultHeight = DEFAULT_ICON_SIZE.dp,
-            viewportWidth = DEFAULT_ICON_SIZE.toFloat(),
-            viewportHeight = DEFAULT_ICON_SIZE.toFloat()
-        )
-            .build()
 
         idList.forEach {
-            vectorAssets.add(
-                loadVectorResource(id = it)
-                    .resource
-                    .resource
-                    ?: defaultVectorAsset
-            )
+            vectorAssets.add(vectorResource(id = it))
         }
         return vectorAssets
     }
