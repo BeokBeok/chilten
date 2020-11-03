@@ -2,11 +2,11 @@ package com.beok.chilten
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Surface
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
@@ -22,29 +22,38 @@ object ActivityMain {
     @Composable
     fun Layout() {
         ChiltenTheme {
-            TopAppBar(
-                title = { Unit },
-                navigationIcon = {
-                    Icon(
-                        asset = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
-                            .first()
-                    )
-                }
-            )
-            Column {
-                val bottomNavigationState: MutableState<BottomNavigationType> =
-                    savedInstanceState { BottomNavigationType.HOME }
-
-                Surface(modifier = Modifier.weight(1f)) {
-                    Unit
-                }
-                BottomNavigationContent(state = bottomNavigationState)
-            }
+            ChiltenScaffold()
         }
     }
 
     @Composable
-    fun BottomNavigationContent(
+    private fun ChiltenScaffold() {
+        Scaffold(
+            topBar = { ChiltenTopAppBar() },
+            bodyContent = { Unit },
+            bottomBar = {
+                val bottomNavigationState: MutableState<BottomNavigationType> =
+                    savedInstanceState { BottomNavigationType.HOME }
+                BottomNavigationContent(state = bottomNavigationState)
+            }
+        )
+    }
+
+    @Composable
+    private fun ChiltenTopAppBar() {
+        TopAppBar(
+            title = { Unit },
+            navigationIcon = {
+                Icon(
+                    asset = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
+                        .first()
+                )
+            }
+        )
+    }
+
+    @Composable
+    private fun BottomNavigationContent(
         modifier: Modifier = Modifier,
         state: MutableState<BottomNavigationType>
     ) {
@@ -110,11 +119,8 @@ object ActivityMain {
     private fun makeVectorAssetList(idList: List<Int>): List<VectorAsset> {
         if (idList.isNullOrEmpty()) return emptyList()
 
-        val vectorAssets = mutableListOf<VectorAsset>()
-
-        idList.forEach {
-            vectorAssets.add(vectorResource(id = it))
-        }
-        return vectorAssets
+        return mutableListOf<VectorAsset>()
+            .apply { idList.forEach { this.add(vectorResource(id = it)) } }
+            .toList()
     }
 }
