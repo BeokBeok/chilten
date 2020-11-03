@@ -15,10 +15,12 @@ import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 import com.beok.chilten.ui.ChiltenTheme
 
-object ActivityMain {
+class ActivityMain {
 
+    @Preview
     @Composable
     fun Layout() {
         ChiltenTheme {
