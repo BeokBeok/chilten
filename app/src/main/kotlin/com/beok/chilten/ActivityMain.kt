@@ -9,6 +9,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
@@ -16,6 +17,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
+import com.beok.chilten.club.ClubScreen
+import com.beok.chilten.gym.GymScreen
+import com.beok.chilten.home.HomeScreen
+import com.beok.chilten.myinfo.MyInfoScreen
 import com.beok.chilten.ui.ChiltenTheme
 
 class ActivityMain {
@@ -30,15 +35,23 @@ class ActivityMain {
 
     @Composable
     private fun ChiltenScaffold() {
+        val bottomNavigationState: MutableState<BottomNavigationType> =
+            savedInstanceState { BottomNavigationType.HOME }
         Scaffold(
             topBar = { ChiltenTopAppBar() },
-            bodyContent = { Unit },
-            bottomBar = {
-                val bottomNavigationState: MutableState<BottomNavigationType> =
-                    savedInstanceState { BottomNavigationType.HOME }
-                BottomNavigationContent(state = bottomNavigationState)
-            }
+            bodyContent = { ChiltenBodyContent(bottomNavigationState) },
+            bottomBar = { BottomNavigationContent(state = bottomNavigationState) }
         )
+    }
+
+    @Composable
+    private fun ChiltenBodyContent(bottomNavigationState: State<BottomNavigationType>) {
+        when (bottomNavigationState.value) {
+            BottomNavigationType.HOME -> HomeScreen()
+            BottomNavigationType.BOWLING_GYM -> GymScreen()
+            BottomNavigationType.CLUB -> ClubScreen()
+            BottomNavigationType.MY_BOWLING -> MyInfoScreen()
+        }
     }
 
     @Composable
