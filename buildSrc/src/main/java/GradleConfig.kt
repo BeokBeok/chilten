@@ -1,6 +1,6 @@
 object Version {
     const val KOTLIN = "1.4.10"
-    const val COMPOSE = "1.0.0-alpha04"
+    const val COMPOSE = "1.0.0-alpha06"
 }
 
 object ProjectConfig {
