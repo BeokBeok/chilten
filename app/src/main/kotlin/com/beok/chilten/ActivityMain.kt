@@ -5,8 +5,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -62,6 +66,16 @@ class ActivityMain {
                 Icon(
                     asset = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
                         .first()
+                )
+            },
+            actions = {
+                IconButton(
+                    onClick = { Unit },
+                    icon = { Icon(Icons.Outlined.Notifications) }
+                )
+                IconButton(
+                    onClick = { Unit },
+                    icon = { Icon(Icons.Outlined.Person) }
                 )
             }
         )
