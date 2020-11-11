@@ -48,4 +48,6 @@ dependencies {
     implementation ComposeConfig.UI
     implementation ComposeConfig.MATERIAL
     implementation ComposeConfig.UI_TOOLING
+
+    implementation AccompanistConfig.COIL
 }
