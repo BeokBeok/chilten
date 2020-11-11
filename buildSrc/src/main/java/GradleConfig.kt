@@ -28,3 +28,7 @@ object ComposeConfig {
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
     const val UI_TOOLING = "androidx.ui:ui-tooling:${Version.COMPOSE}"
 }
+
+object AccompanistConfig {
+    const val COIL = "dev.chrisbanes.accompanist:accompanist-coil:0.3.2"
+}
