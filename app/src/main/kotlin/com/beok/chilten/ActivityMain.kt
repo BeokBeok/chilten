@@ -18,7 +18,6 @@ import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
 import com.beok.chilten.club.ClubScreen
@@ -26,6 +25,7 @@ import com.beok.chilten.gym.GymScreen
 import com.beok.chilten.home.HomeScreen
 import com.beok.chilten.myinfo.MyInfoScreen
 import com.beok.chilten.ui.ChiltenTheme
+import com.beok.chilten.util.makeVectorAssetList
 
 class ActivityMain {
 
@@ -142,14 +142,5 @@ class ActivityMain {
         } else {
             Icon(asset = normalToSelectAsset.first, modifier = iconSize)
         }
-    }
-
-    @Composable
-    private fun makeVectorAssetList(idList: List<Int>): List<VectorAsset> {
-        if (idList.isNullOrEmpty()) return emptyList()
-
-        return mutableListOf<VectorAsset>()
-            .apply { idList.forEach { this.add(vectorResource(id = it)) } }
-            .toList()
     }
 }
