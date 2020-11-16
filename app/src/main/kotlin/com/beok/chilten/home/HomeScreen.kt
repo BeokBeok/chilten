@@ -1,45 +1,78 @@
 package com.beok.chilten.home
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.AnimationClockAmbient
 import androidx.compose.ui.unit.dp
+import com.beok.chilten.R
 import com.beok.chilten.ui.pager.Pager
 import com.beok.chilten.ui.pager.PagerState
+import com.beok.chilten.util.makeVectorAssetList
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun HomeScreen() {
     Scaffold(
         bodyContent = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-            ) {
-                val bannerUrls = listOf(
-                    "https://m.chilten.com/upload/image/banner/2020/5faa1e566f6dd1emo8d0do.jpg",
-                    "https://m.chilten.com/upload/image/banner/2020/5fa89f7006c921emlatjcr.jpg",
-                    "https://m.chilten.com/upload/image/banner/2020/5f72c26b007ce1ejc4esfq.jpg",
-                    "https://m.chilten.com/upload/image/banner/2020/5f5b01bf7e6541ehtntl0t.jpg",
-                    "https://m.chilten.com/upload/image/banner/2020/5f6c416091ce51eivduoal.jpg",
-                    "https://m.chilten.com/upload/image/banner/2020/5f9e054bc27b31em0k9c0k.jpg"
+            ScrollableColumn(modifier = Modifier.fillMaxSize()) {
+                HomeBanner(
+                    modifier = Modifier.preferredHeight(280.dp),
+                    bannerUrls = listOf(
+                        "https://m.chilten.com/upload/image/banner/2020/5faa1e566f6dd1emo8d0do.jpg",
+                        "https://m.chilten.com/upload/image/banner/2020/5fa89f7006c921emlatjcr.jpg",
+                        "https://m.chilten.com/upload/image/banner/2020/5f72c26b007ce1ejc4esfq.jpg",
+                        "https://m.chilten.com/upload/image/banner/2020/5f5b01bf7e6541ehtntl0t.jpg",
+                        "https://m.chilten.com/upload/image/banner/2020/5f6c416091ce51eivduoal.jpg",
+                        "https://m.chilten.com/upload/image/banner/2020/5f9e054bc27b31em0k9c0k.jpg"
+                    )
                 )
-                HomeBanner(bannerUrls = bannerUrls)
+
+                MiddleMenu()
             }
         }
     )
+}
+
+@Composable
+private fun MiddleMenu() {
+    Row {
+        makeVectorAssetList(
+            idList = listOf(
+                R.drawable.ic_freedom_board,
+                R.drawable.ic_bowling_video,
+                R.drawable.ic_used_market,
+                R.drawable.ic_ranking_of_honor
+            )
+        ).forEachIndexed { index, vectorAsset ->
+            Column(modifier = Modifier.weight(1f)) {
+                Image(asset = vectorAsset, modifier = Modifier.fillMaxWidth())
+                Text(
+                    text = when (index) {
+                        1 -> "볼링영상"
+                        2 -> "중고장터"
+                        3 -> "명예의전당"
+                        else -> "자유게시판"
+                    },
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+        }
+    }
 }
 
 @Composable
@@ -50,13 +83,17 @@ private fun HomeBanner(
             PagerState(clock)
         }
     },
+    modifier: Modifier = Modifier,
     bannerUrls: List<String>
 ) {
     pagerState.maxPage = bannerUrls.size - 1
 
-    Pager(state = pagerState) {
+    Pager(
+        state = pagerState,
+        modifier = modifier
+    ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Box(modifier = Modifier.weight(1f)) {
+            Box {
                 CoilImage(
                     data = bannerUrls[page],
                     modifier = Modifier.clip(MaterialTheme.shapes.medium)
@@ -64,6 +101,4 @@ private fun HomeBanner(
             }
         }
     }
-
-    Spacer(Modifier.height(16.dp))
 }
