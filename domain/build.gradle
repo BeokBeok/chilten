@@ -43,4 +43,11 @@ dependencies {
     implementation HiltConfig.HILT_LIFECYCLE_VM
     kapt HiltConfig.HILT_ANDROID_COMPILER
     kapt HiltConfig.HILT_COMPILER
+
+    implementation NetworkConfig.RETROFIT
+    implementation NetworkConfig.LOGGING_INTERCEPTOR
+
+    implementation NetworkConfig.CONVERTER_MOSHI
+    implementation NetworkConfig.MOSHI_KOTLIN
+    kapt NetworkConfig.MOSHI_KOTLIN_CODEGEN
 }
