@@ -34,7 +34,7 @@ object ComposeConfig {
 }
 
 object AccompanistConfig {
-    const val COIL = "dev.chrisbanes.accompanist:accompanist-coil:0.3.2"
+    const val COIL = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
 }
 
 object HiltConfig {
