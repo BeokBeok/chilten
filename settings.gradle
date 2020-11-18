@@ -1,2 +1,3 @@
 rootProject.name = "Chilten"
 include ':app'
+include ':domain'
