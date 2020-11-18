@@ -1,66 +1,68 @@
 package com.beok.chilten.domain
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class DataItem(
 
 	@Json(name="end_date")
-	val endDate: String? = null,
+	val endDate: String = "",
 
 	@Json(name="st_date")
-	val stDate: String? = null,
+	val stDate: String = "",
 
 	@Json(name="dis_cnt")
-	val disCnt: String? = null,
+	val disCnt: String = "",
 
 	@Json(name="kind")
-	val kind: String? = null,
+	val kind: String = "",
 
 	@Json(name="link")
-	val link: String? = null,
+	val link: String = "",
 
 	@Json(name="clk_cnt")
-	val clkCnt: String? = null,
+	val clkCnt: String = "",
 
 	@Json(name="mod_date")
-	val modDate: String? = null,
+	val modDate: String = "",
 
 	@Json(name="bnseq")
-	val bnseq: String? = null,
+	val bnseq: String = "",
 
 	@Json(name="title")
-	val title: String? = null,
+	val title: String = "",
 
 	@Json(name="linktarget")
-	val linktarget: String? = null,
+	val linktarget: String = "",
 
 	@Json(name="content")
-	val content: String? = null,
+	val content: String = "",
 
 	@Json(name="is_show")
-	val isShow: String? = null,
+	val isShow: String = "",
 
 	@Json(name="mode")
-	val mode: String? = null,
+	val mode: String = "",
 
 	@Json(name="reg_date")
-	val regDate: String? = null,
+	val regDate: String = "",
 
 	@Json(name="background_color")
-	val backgroundColor: String? = null,
+	val backgroundColor: String = "",
 
 	@Json(name="image_path")
-	val imagePath: String? = null,
+	val imagePath: String = "",
 
 	@Json(name="is_del")
-	val isDel: String? = null,
+	val isDel: String = "",
 
 	@Json(name="location")
-	val location: String? = null,
+	val location: String = "",
 
 	@Json(name="image_path_m")
 	val imagePathM: Any? = null,
 
 	@Json(name="order")
-	val order: String? = null
+	val order: String = ""
 )
