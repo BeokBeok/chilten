@@ -46,6 +46,7 @@ android {
 dependencies {
     implementation Dependencies.KOTLIN_STDLIB
     implementation Dependencies.MATERIAL
+    implementation Dependencies.COROUTINES
 
     implementation ComposeConfig.UI
     implementation ComposeConfig.MATERIAL
