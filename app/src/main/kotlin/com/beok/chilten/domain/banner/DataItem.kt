@@ -1,4 +1,4 @@
-package com.beok.chilten.domain
+package com.beok.chilten.domain.banner
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
