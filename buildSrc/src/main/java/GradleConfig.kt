@@ -32,6 +32,7 @@ object ComposeConfig {
     const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
     const val UI_TOOLING = "androidx.ui:ui-tooling:${Version.COMPOSE}"
+    const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Version.COMPOSE}"
 }
 
 object AccompanistConfig {
@@ -64,6 +65,6 @@ object NetworkConfig {
 object LifecycleConfig {
     private const val LIFECYCLE_VER = "2.3.0-beta01"
 
-    const val LIFECYCLE_LIVEDATA_EXT = "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VER"
+    const val LIFECYCLE_LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VER"
     const val LIFECYCLE_VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VER"
 }

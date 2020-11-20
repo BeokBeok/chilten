@@ -52,6 +52,7 @@ dependencies {
     implementation ComposeConfig.UI
     implementation ComposeConfig.MATERIAL
     implementation ComposeConfig.UI_TOOLING
+    implementation ComposeConfig.RUNTIME_LIVEDATA
 
     implementation AccompanistConfig.COIL
 
@@ -67,6 +68,6 @@ dependencies {
     implementation NetworkConfig.MOSHI_KOTLIN
     kapt NetworkConfig.MOSHI_KOTLIN_CODEGEN
 
-    implementation LifecycleConfig.LIFECYCLE_LIVEDATA_EXT
+    implementation LifecycleConfig.LIFECYCLE_LIVEDATA_KTX
     implementation LifecycleConfig.LIFECYCLE_VIEWMODEL_KTX
 }
