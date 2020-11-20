@@ -25,6 +25,7 @@ object Dependencies {
     const val CORE_KTX = "androidx.core:core-ktx:1.3.0"
     const val MATERIAL = "com.google.android.material:material:1.1.0"
     const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+    const val ACTIVITY_KTX = "androidx.activity:activity-ktx:1.2.0-beta01"
 }
 
 object ComposeConfig {

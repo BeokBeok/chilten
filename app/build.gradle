@@ -47,6 +47,7 @@ dependencies {
     implementation Dependencies.KOTLIN_STDLIB
     implementation Dependencies.MATERIAL
     implementation Dependencies.COROUTINES
+    implementation Dependencies.ACTIVITY_KTX
 
     implementation ComposeConfig.UI
     implementation ComposeConfig.MATERIAL
