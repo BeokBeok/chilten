@@ -25,7 +25,7 @@ data class DataItem(
 	val clkCnt: String = "",
 
 	@Json(name="mod_date")
-	val modDate: String = "",
+	val modDate: String? = null,
 
 	@Json(name="bnseq")
 	val bnseq: String = "",
