@@ -59,3 +59,10 @@ object NetworkConfig {
     const val MOSHI_KOTLIN = "com.squareup.moshi:moshi-kotlin:$MOSHI_VER"
     const val MOSHI_KOTLIN_CODEGEN = "com.squareup.moshi:moshi-kotlin-codegen:$MOSHI_VER"
 }
+
+object LifecycleConfig {
+    private const val LIFECYCLE_VER = "2.3.0-beta01"
+
+    const val LIFECYCLE_LIVEDATA_EXT = "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VER"
+    const val LIFECYCLE_VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VER"
+}
