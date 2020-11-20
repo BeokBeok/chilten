@@ -1,7 +1,7 @@
 package com.beok.chilten.ui.pager
 
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.ParentDataModifier
+import androidx.compose.ui.layout.ParentDataModifier
 import androidx.compose.ui.unit.Density
 
 @Immutable

@@ -1,12 +1,12 @@
 package com.beok.chilten
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Notifications
@@ -19,39 +19,46 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.VectorAsset
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.beok.chilten.club.ClubScreen
 import com.beok.chilten.gym.GymScreen
 import com.beok.chilten.home.HomeScreen
+import com.beok.chilten.home.HomeViewModel
 import com.beok.chilten.myinfo.MyInfoScreen
 import com.beok.chilten.ui.ChiltenTheme
 import com.beok.chilten.util.makeVectorAssetList
 
 class ActivityMain {
 
-    @Preview
     @Composable
-    fun Layout() {
+    fun Layout(homeViewModel: HomeViewModel) {
         ChiltenTheme {
-            ChiltenScaffold()
+            ChiltenScaffold(homeViewModel = homeViewModel)
         }
     }
 
     @Composable
-    private fun ChiltenScaffold() {
+    private fun ChiltenScaffold(homeViewModel: HomeViewModel) {
         val bottomNavigationState: MutableState<BottomNavigationType> =
             savedInstanceState { BottomNavigationType.HOME }
         Scaffold(
             topBar = { ChiltenTopAppBar() },
-            bodyContent = { ChiltenBodyContent(bottomNavigationState) },
+            bodyContent = {
+                ChiltenBodyContent(
+                    bottomNavigationState = bottomNavigationState,
+                    homeViewModel = homeViewModel
+                )
+            },
             bottomBar = { BottomNavigationContent(state = bottomNavigationState) }
         )
     }
 
     @Composable
-    private fun ChiltenBodyContent(bottomNavigationState: State<BottomNavigationType>) {
+    private fun ChiltenBodyContent(
+        bottomNavigationState: State<BottomNavigationType>,
+        homeViewModel: HomeViewModel
+    ) {
         when (bottomNavigationState.value) {
-            BottomNavigationType.HOME -> HomeScreen()
+            BottomNavigationType.HOME -> HomeScreen(homeViewModel)
             BottomNavigationType.BOWLING_GYM -> GymScreen()
             BottomNavigationType.CLUB -> ClubScreen()
             BottomNavigationType.MY_BOWLING -> MyInfoScreen()

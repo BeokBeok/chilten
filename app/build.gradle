@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -44,10 +46,28 @@ android {
 dependencies {
     implementation Dependencies.KOTLIN_STDLIB
     implementation Dependencies.MATERIAL
+    implementation Dependencies.COROUTINES
+    implementation Dependencies.ACTIVITY_KTX
 
     implementation ComposeConfig.UI
     implementation ComposeConfig.MATERIAL
     implementation ComposeConfig.UI_TOOLING
+    implementation ComposeConfig.RUNTIME_LIVEDATA
 
     implementation AccompanistConfig.COIL
+
+    implementation HiltConfig.HILT_ANDROID
+    implementation HiltConfig.HILT_LIFECYCLE_VM
+    kapt HiltConfig.HILT_ANDROID_COMPILER
+    kapt HiltConfig.HILT_COMPILER
+
+    implementation NetworkConfig.RETROFIT
+    implementation NetworkConfig.LOGGING_INTERCEPTOR
+
+    implementation NetworkConfig.CONVERTER_MOSHI
+    implementation NetworkConfig.MOSHI_KOTLIN
+    kapt NetworkConfig.MOSHI_KOTLIN_CODEGEN
+
+    implementation LifecycleConfig.LIFECYCLE_LIVEDATA_KTX
+    implementation LifecycleConfig.LIFECYCLE_VIEWMODEL_KTX
 }
