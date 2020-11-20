@@ -16,6 +16,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -31,20 +33,14 @@ import com.beok.chilten.util.makeVectorAssetList
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(homeViewModel: HomeViewModel) {
+    val bannerUrls: List<String> by homeViewModel.bannerUrlList.observeAsState(listOf())
     Scaffold(
         bodyContent = {
             ScrollableColumn(modifier = Modifier.fillMaxSize()) {
                 HomeBanner(
                     modifier = Modifier.preferredHeight(280.dp),
-                    bannerUrls = listOf(
-                        "https://m.chilten.com/upload/image/banner/2020/5faa1e566f6dd1emo8d0do.jpg",
-                        "https://m.chilten.com/upload/image/banner/2020/5fa89f7006c921emlatjcr.jpg",
-                        "https://m.chilten.com/upload/image/banner/2020/5f72c26b007ce1ejc4esfq.jpg",
-                        "https://m.chilten.com/upload/image/banner/2020/5f5b01bf7e6541ehtntl0t.jpg",
-                        "https://m.chilten.com/upload/image/banner/2020/5f6c416091ce51eivduoal.jpg",
-                        "https://m.chilten.com/upload/image/banner/2020/5f9e054bc27b31em0k9c0k.jpg"
-                    )
+                    bannerUrls = bannerUrls
                 )
 
                 MiddleMenu()
@@ -72,7 +68,12 @@ private fun MiddleMenu() {
                             1 -> Toast.makeText(context, "볼링영상", Toast.LENGTH_SHORT).show()
                             2 -> Toast.makeText(context, "중고장터", Toast.LENGTH_SHORT).show()
                             3 -> Toast.makeText(context, "명예의전당", Toast.LENGTH_SHORT).show()
-                            else -> context.startActivity(Intent(context, FreedomBoardActivity::class.java))
+                            else -> context.startActivity(
+                                Intent(
+                                    context,
+                                    FreedomBoardActivity::class.java
+                                )
+                            )
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
@@ -103,8 +104,9 @@ private fun HomeBanner(
     modifier: Modifier = Modifier,
     bannerUrls: List<String>
 ) {
-    pagerState.maxPage = bannerUrls.size - 1
+    if (bannerUrls.isEmpty()) return
 
+    pagerState.maxPage = bannerUrls.size - 1
     Pager(
         state = pagerState,
         modifier = modifier
