@@ -14,7 +14,11 @@ class FreedomBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ActivityFreedomBoard().Layout(navigationEvent = { finish() })
+            ActivityFreedomBoard()
+                .Layout(
+                    viewModel = viewModel,
+                    navigationEvent = { finish() }
+                )
         }
 
         viewModel.fetchFreedomBoard()
