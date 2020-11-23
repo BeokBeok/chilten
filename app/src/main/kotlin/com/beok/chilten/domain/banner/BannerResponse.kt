@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class BannerResponse(
 
 	@Json(name="data")
-	val data: List<DataItem> = listOf(),
+	val data: List<BannerDataItem> = listOf(),
 
 	@Json(name="message")
 	val message: String = "",
