@@ -14,7 +14,7 @@ data class FreedomBoardItem(
 
     companion object {
         fun toItem(freedomBoardDataItem: FreedomBoardDataItem) = FreedomBoardItem(
-            imageUrl = "${Constants.PREFIX_IMAGE_URL}${freedomBoardDataItem.filePath}",
+            imageUrl = if (freedomBoardDataItem.filePath.isNullOrEmpty()) "" else "${Constants.PREFIX_IMAGE_URL}${freedomBoardDataItem.filePath}",
             isNotice = freedomBoardDataItem.isNotice == "T",
             title = freedomBoardDataItem.title,
             nickName = freedomBoardDataItem.nickName,
