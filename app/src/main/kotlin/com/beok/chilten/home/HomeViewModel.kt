@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beok.chilten.domain.ChiltenRepository
 import com.beok.chilten.domain.banner.BannerRequest
+import com.beok.chilten.util.Constants
 import kotlinx.coroutines.launch
 
 class HomeViewModel @ViewModelInject constructor(
@@ -20,11 +21,7 @@ class HomeViewModel @ViewModelInject constructor(
         val response = chiltenRepository.fetchBanner(BannerRequest(location = "MB"))
         _bannerUrlList.value = response.data
             .map {
-                "${PREFIX_BANNER_IMAGE_URL}/${it.imagePath.removePrefix("//")}"
+                "${Constants.PREFIX_IMAGE_URL}/${it.imagePath.removePrefix("//")}"
             }
-    }
-
-    companion object {
-        private const val PREFIX_BANNER_IMAGE_URL = "https://m.chilten.com/upload/image"
     }
 }

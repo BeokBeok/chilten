@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class DataItem(
+data class BannerDataItem(
 
 	@Json(name="end_date")
 	val endDate: String = "",
