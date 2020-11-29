@@ -7,6 +7,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beok.chilten.domain.ChiltenRepository
+import com.beok.chilten.domain.freedomboard.FreedomBoardResponse
 import com.beok.chilten.domain.freedomboard.Params
 import kotlinx.coroutines.launch
 
@@ -26,21 +27,16 @@ class FreedomBoardViewModel @ViewModelInject constructor(
 
     fun fetchFreedomBoard(page: Int = 1) = viewModelScope.launch {
         if (isLastPage) return@launch
+
         val response = chiltenRepository
             .fetchFreedomBoard(Params(boardIdx = 2, page = page))
-            .also {
-                if (it.length == 0 && it.params.page > 1) isLastPage = true
-            }
-        if (page == 1 && cachedFreedomBoardGroup.data.isEmpty()) {
-            FreedomBoardGroup.toGroup(response).let {
-                cachedFreedomBoardGroup = it
-                _freedomBoardGroup.value = it
-            }
-            return@launch
-        }
-        val freedomBoardGroup = FreedomBoardGroup.toGroup(response)
-        cachedFreedomBoardGroup += freedomBoardGroup
+            .also(::setupIfLastPage)
+        cachedFreedomBoardGroup += FreedomBoardGroup.toGroup(response)
         _freedomBoardGroup.value = cachedFreedomBoardGroup
+    }
+
+    private fun setupIfLastPage(response: FreedomBoardResponse) {
+        if (response.length == 0 && response.params.page > 1) isLastPage = true
     }
 
     fun getFreedomBoardCount() = _freedomBoardGroup.value?.length ?: 0
