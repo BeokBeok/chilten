@@ -11,7 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumnForIndexed
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -57,10 +57,15 @@ class ActivityFreedomBoard {
     @Composable
     private fun FreedomBoardContent(viewModel: FreedomBoardViewModel) {
         val freedomBoardList = viewModel.freedomBoardList.observeAsState(listOf())
-        LazyColumnFor(
+
+        LazyColumnForIndexed(
             items = freedomBoardList.value,
             modifier = Modifier.fillMaxWidth()
-        ) { item ->
+        ) { index, item ->
+            if (index + 1 == viewModel.getFreedomBoardCount()) {
+                viewModel.fetchFreedomBoard(viewModel.getCurrentPage() + 1)
+                return@LazyColumnForIndexed
+            }
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
