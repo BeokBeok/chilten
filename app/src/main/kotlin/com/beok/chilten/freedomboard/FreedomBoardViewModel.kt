@@ -22,9 +22,15 @@ class FreedomBoardViewModel @ViewModelInject constructor(
         }
 
     private var cachedFreedomBoardGroup: FreedomBoardGroup = FreedomBoardGroup()
+    private var isLastPage = false
 
     fun fetchFreedomBoard(page: Int = 1) = viewModelScope.launch {
-        val response = chiltenRepository.fetchFreedomBoard(Params(boardIdx = 2, page = page))
+        if (isLastPage) return@launch
+        val response = chiltenRepository
+            .fetchFreedomBoard(Params(boardIdx = 2, page = page))
+            .also {
+                if (it.length == 0 && it.params.page > 1) isLastPage = true
+            }
         if (page == 1 && cachedFreedomBoardGroup.data.isEmpty()) {
             FreedomBoardGroup.toGroup(response).let {
                 cachedFreedomBoardGroup = it
