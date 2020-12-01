@@ -36,7 +36,7 @@ class FreedomBoardViewModel @ViewModelInject constructor(
     }
 
     private fun setupIfLastPage(response: FreedomBoardResponse) {
-        if (response.length == 0 && response.params.page > 1) isLastPage = true
+        if (response.length == 0 && response.params.page ?: -1 > 1) isLastPage = true
     }
 
     fun getFreedomBoardCount() = _freedomBoardGroup.value?.length ?: 0
