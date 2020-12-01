@@ -19,7 +19,7 @@ data class FreedomBoardGroup(
         fun toGroup(freedomBoardResponse: FreedomBoardResponse) =
             FreedomBoardGroup(
                 length = freedomBoardResponse.length,
-                page = freedomBoardResponse.params.page,
+                page = freedomBoardResponse.params.page ?: 0,
                 data = freedomBoardResponse.data.map(FreedomBoardItem::toItem)
             )
     }
