@@ -10,5 +10,8 @@ data class Params(
 	val boardIdx: Int = -1,
 
 	@Json(name="page")
-	val page: Int = -1
+	val page: Int? = null,
+
+	@Json(name="post_idx")
+	val postIdx: Int? = null
 )
