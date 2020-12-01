@@ -7,8 +7,8 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beok.chilten.domain.ChiltenRepository
+import com.beok.chilten.domain.common.Params
 import com.beok.chilten.domain.freedomboard.FreedomBoardResponse
-import com.beok.chilten.domain.freedomboard.Params
 import kotlinx.coroutines.launch
 
 class FreedomBoardViewModel @ViewModelInject constructor(

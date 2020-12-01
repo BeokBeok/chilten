@@ -1,4 +1,4 @@
-package com.beok.chilten.domain.freedomboard
+package com.beok.chilten.domain.common
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

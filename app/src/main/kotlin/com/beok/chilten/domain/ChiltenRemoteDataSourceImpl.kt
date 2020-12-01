@@ -2,8 +2,8 @@ package com.beok.chilten.domain
 
 import com.beok.chilten.domain.banner.BannerRequest
 import com.beok.chilten.domain.banner.BannerResponse
+import com.beok.chilten.domain.common.Params
 import com.beok.chilten.domain.freedomboard.FreedomBoardResponse
-import com.beok.chilten.domain.freedomboard.Params
 import kotlinx.coroutines.withContext
 
 class ChiltenRemoteDataSourceImpl(
