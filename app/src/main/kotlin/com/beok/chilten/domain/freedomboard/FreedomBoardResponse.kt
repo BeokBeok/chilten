@@ -1,5 +1,6 @@
 package com.beok.chilten.domain.freedomboard
 
+import com.beok.chilten.domain.common.Params
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
