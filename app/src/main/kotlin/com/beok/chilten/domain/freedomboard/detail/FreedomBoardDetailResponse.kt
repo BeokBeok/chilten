@@ -1,20 +1,21 @@
-package com.beok.chilten.domain.freedomboard
+package com.beok.chilten.domain.freedomboard.detail
 
 import com.beok.chilten.domain.common.Params
+import com.beok.chilten.domain.freedomboard.ABoardConfig
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FreedomBoardResponse(
+data class FreedomBoardDetailResponse(
 
 	@Json(name="aBoardConfig")
 	val aBoardConfig: ABoardConfig = ABoardConfig(),
 
 	@Json(name="data")
-	val data: List<FreedomBoardDataItem> = emptyList(),
+	val data: FreedomBoardDetailDataItem = FreedomBoardDetailDataItem(),
 
-	@Json(name="length")
-	val length: Int = -1,
+	@Json(name="able_comment")
+	val ableComment: String = "",
 
 	@Json(name="message")
 	val message: String = "",

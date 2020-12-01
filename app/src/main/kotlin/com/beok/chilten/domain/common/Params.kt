@@ -1,4 +1,4 @@
-package com.beok.chilten.domain.freedomboard
+package com.beok.chilten.domain.common
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -10,5 +10,8 @@ data class Params(
 	val boardIdx: Int = -1,
 
 	@Json(name="page")
-	val page: Int = -1
+	val page: Int? = null,
+
+	@Json(name="post_idx")
+	val postIdx: Int? = null
 )
