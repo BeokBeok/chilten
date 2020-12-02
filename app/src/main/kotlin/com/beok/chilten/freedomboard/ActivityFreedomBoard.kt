@@ -1,5 +1,6 @@
 package com.beok.chilten.freedomboard
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,26 +37,35 @@ class ActivityFreedomBoard {
     @Composable
     fun Layout(
         viewModel: FreedomBoardViewModel,
-        navigationEvent: () -> Unit = { }
+        navigationEvent: () -> Unit = { },
+        activityStartEvent: (boardIdx: Int, postIdx: Int) -> Unit = { _, _ -> }
     ) {
         ChiltenTheme {
-            FreedomBoardScaffold(viewModel = viewModel, navigationEvent = navigationEvent)
+            FreedomBoardScaffold(
+                viewModel = viewModel,
+                navigationEvent = navigationEvent,
+                activityStartEvent = activityStartEvent,
+            )
         }
     }
 
     @Composable
     fun FreedomBoardScaffold(
         viewModel: FreedomBoardViewModel,
-        navigationEvent: () -> Unit
+        navigationEvent: () -> Unit,
+        activityStartEvent: (boardIdx: Int, postIdx: Int) -> Unit
     ) {
         Scaffold(
             topBar = { FreedomBoardTopAppBar(navigationEvent) },
-            bodyContent = { FreedomBoardContent(viewModel) }
+            bodyContent = { FreedomBoardContent(viewModel, activityStartEvent) }
         )
     }
 
     @Composable
-    private fun FreedomBoardContent(viewModel: FreedomBoardViewModel) {
+    private fun FreedomBoardContent(
+        viewModel: FreedomBoardViewModel,
+        activityStartEvent: (boardIdx: Int, postIdx: Int) -> Unit
+    ) {
         val freedomBoardList = viewModel.freedomBoardList.observeAsState(listOf())
 
         LazyColumnForIndexed(
@@ -66,7 +76,12 @@ class ActivityFreedomBoard {
                 viewModel.fetchFreedomBoard(viewModel.getCurrentPage() + 1)
             }
             Row(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .clickable(onClick = {
+                        activityStartEvent.invoke(item.boardIdx, item.postIdx)
+                    }),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 FreedomThumbnail(item)
