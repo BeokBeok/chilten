@@ -26,6 +26,9 @@
         <activity
             android:name=".freedomboard.FreedomBoardActivity"
             android:theme="@style/Theme.Chilten.NoActionBar" />
+        <activity
+            android:name=".freedomboard.detail.FreedomBoardDetailActivity"
+            android:theme="@style/Theme.Chilten.NoActionBar" />
     </application>
 
 </manifest>
