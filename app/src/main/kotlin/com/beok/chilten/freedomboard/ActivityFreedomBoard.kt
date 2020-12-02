@@ -64,7 +64,6 @@ class ActivityFreedomBoard {
         ) { index, item ->
             if (index + 1 == viewModel.getFreedomBoardCount()) {
                 viewModel.fetchFreedomBoard(viewModel.getCurrentPage() + 1)
-                return@LazyColumnForIndexed
             }
             Row(
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
