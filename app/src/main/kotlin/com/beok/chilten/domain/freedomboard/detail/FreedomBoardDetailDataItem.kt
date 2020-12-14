@@ -112,5 +112,5 @@ data class FreedomBoardDetailDataItem(
 	val isNotice: String = "",
 
 	@Json(name="boardFile")
-	val boardFile: List<String?> = emptyList()
+	val boardFile: List<BoardFileItem> = emptyList()
 )
