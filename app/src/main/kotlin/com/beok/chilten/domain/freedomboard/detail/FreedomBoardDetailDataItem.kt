@@ -16,7 +16,7 @@ data class FreedomBoardDetailDataItem(
 	val isLike: String = "",
 
 	@Json(name="mod_date")
-	val modDate: String = "",
+	val modDate: String? = null,
 
 	@Json(name="device_type")
 	val deviceType: String? = null,
