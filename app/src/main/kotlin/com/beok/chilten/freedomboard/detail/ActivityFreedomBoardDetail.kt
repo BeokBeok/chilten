@@ -108,7 +108,7 @@ class ActivityFreedomBoardDetail {
             .map(viewModel.freedomBoardDetailItem) { it.regDate }
             .observeAsState("")
         val hitText = Transformations
-            .map(viewModel.freedomBoardDetailItem) { it.hit }
+            .map(viewModel.freedomBoardDetailItem) { "조회수 ${it.hit}" }
             .observeAsState("")
 
         Text(
@@ -129,7 +129,7 @@ class ActivityFreedomBoardDetail {
             contentScale = ContentScale.Crop
         )
         Text(
-            text = "${nickNameText.value}\n${regDateText.value}  조회수 ${hitText.value}",
+            text = "${nickNameText.value}\n${regDateText.value} ${hitText.value}",
             modifier = Modifier
                 .layoutId(ID_POST_INFO)
                 .padding(start = 12.dp)
