@@ -13,14 +13,14 @@ class FreedomBoardDetailViewModel @ViewModelInject constructor(
     private val chiltenRepository: ChiltenRepository
 ) : ViewModel() {
 
-    private val _content = MutableLiveData<String>()
-    val content: LiveData<String> get() = _content
+    private val _freedomBoardDetailItem = MutableLiveData<FreedomBoardDetailItem>()
+    val freedomBoardDetailItem: LiveData<FreedomBoardDetailItem> get() = _freedomBoardDetailItem
 
     fun fetchFreedomBoardDetail(boardIdx: Int, postIdx: Int) = viewModelScope.launch {
         val response = chiltenRepository.fetchFreedomBoardDetail(
             params = Params(boardIdx = boardIdx, postIdx = postIdx)
         )
 
-        _content.value = response.data.content
+        _freedomBoardDetailItem.value = FreedomBoardDetailItem.toItem(response)
     }
 }

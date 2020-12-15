@@ -6,6 +6,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Transformations
 import com.beok.chilten.base.BaseTopAppBar
 import com.beok.chilten.ui.ChiltenTheme
 
@@ -35,10 +36,11 @@ class ActivityFreedomBoardDetail {
     @SuppressLint("SetJavaScriptEnabled")
     @Composable
     fun FreedomBoardDetailContent(viewModel: FreedomBoardDetailViewModel) {
-        val content = viewModel.content.observeAsState("")
-        AndroidView(
-            viewBlock = ::WebView
-        ) { webView ->
+        val content = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.content }
+            .observeAsState("")
+
+        AndroidView(viewBlock = ::WebView) { webView ->
             with(webView) {
                 settings.javaScriptEnabled = true
                 settings.useWideViewPort = true
