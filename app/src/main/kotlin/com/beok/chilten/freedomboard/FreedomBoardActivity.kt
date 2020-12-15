@@ -24,8 +24,8 @@ class FreedomBoardActivity : AppCompatActivity() {
                     activityStartEvent = { boardIdx, postIdx ->
                         startActivity<FreedomBoardDetailActivity>(
                             bundleOf(
-                                BUNDLE_BOARD_IDX to boardIdx,
-                                BUNDLE_POST_IDX to postIdx
+                                FreedomBoardDetailActivity.BUNDLE_BOARD_IDX to boardIdx,
+                                FreedomBoardDetailActivity.BUNDLE_POST_IDX to postIdx
                             )
                         )
                     }
@@ -33,10 +33,5 @@ class FreedomBoardActivity : AppCompatActivity() {
         }
 
         viewModel.fetchFreedomBoard()
-    }
-
-    companion object {
-        private const val BUNDLE_BOARD_IDX = "board_idx"
-        private const val BUNDLE_POST_IDX = "post_idx"
     }
 }
