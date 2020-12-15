@@ -3,6 +3,7 @@ package com.beok.chilten.freedomboard.detail
 import android.annotation.SuppressLint
 import android.webkit.WebView
 import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.ConstraintSet
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,86 +51,121 @@ class ActivityFreedomBoardDetail {
 
     @Composable
     fun FreedomBoardDetailContent(viewModel: FreedomBoardDetailViewModel) {
-        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-            val (subtitle, picture, postInfo, divider, webContent) = createRefs()
-            val subtitleText = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.title }
-                .observeAsState("")
-            val pictureUrl = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.picture }
-                .observeAsState("")
-            val nickNameText = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.nickName }
-                .observeAsState("")
-            val regDateText = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.regDate }
-                .observeAsState("")
-            val hitText = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.hit }
-                .observeAsState("")
-            val contentHtml = Transformations
-                .map(viewModel.freedomBoardDetailItem) { it.content }
-                .observeAsState("")
-            Text(
-                text = subtitleText.value,
-                modifier = Modifier
-                    .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
-                    .constrainAs(subtitle) {
-                        top.linkTo(parent.top)
-                        start.linkTo(parent.start)
-                    },
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            CoilImage(
-                data = pictureUrl.value,
-                modifier = Modifier
-                    .width(74.dp)
-                    .height(74.dp)
-                    .padding(start = 20.dp, bottom = 8.dp)
-                    .constrainAs(picture) {
-                        top.linkTo(subtitle.bottom)
-                        start.linkTo(subtitle.start)
-                    },
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = "${nickNameText.value}\n${regDateText.value}  조회수 ${hitText.value}",
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .constrainAs(postInfo) {
-                        start.linkTo(picture.end)
-                        top.linkTo(picture.top)
-                        bottom.linkTo(picture.bottom)
-                    }
-            )
-            Divider(
-                modifier = Modifier
-                    .constrainAs(divider) {
-                        top.linkTo(picture.bottom)
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                    },
-                color = Color.Gray
-            )
-            AndroidView(
-                viewBlock = ::WebView,
-                modifier = Modifier.constrainAs(webContent) {
-                    top.linkTo(divider.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                }
-            ) { webView ->
-                with(webView) {
-                    @SuppressLint("SetJavaScriptEnabled")
-                    settings.javaScriptEnabled = true
-                    settings.useWideViewPort = true
-                    settings.minimumFontSize = 30
-                    setInitialScale(1)
-                    loadDataWithBaseURL("", contentHtml.value, "text/html", "utf-8", "")
-                }
+        ConstraintLayout(
+            constraintSet = FreedomBoardDetailConstraints(),
+            modifier = Modifier.fillMaxSize()
+        ) {
+            FreedomBoardDetailHeader(viewModel = viewModel)
+            FreedomBoardDetailWebContent(viewModel = viewModel)
+        }
+    }
+
+    @Composable
+    private fun FreedomBoardDetailConstraints(): ConstraintSet =
+        ConstraintSet {
+            val subtitle = createRefFor(ID_SUBTITLE)
+            val picture = createRefFor(ID_PICTURE)
+            val postInfo = createRefFor(ID_POST_INFO)
+            val divider = createRefFor(ID_DIVIDER)
+            val webContent = createRefFor(ID_WEB_CONTENT)
+            constrain(subtitle) {
+                top.linkTo(parent.top)
+                start.linkTo(parent.start)
+            }
+            constrain(picture) {
+                top.linkTo(subtitle.bottom)
+                start.linkTo(subtitle.start)
+            }
+            constrain(postInfo) {
+                start.linkTo(picture.end)
+                top.linkTo(picture.top)
+                bottom.linkTo(picture.bottom)
+            }
+            constrain(divider) {
+                top.linkTo(picture.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+            }
+            constrain(webContent) {
+                top.linkTo(divider.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
             }
         }
+
+    @Composable
+    private fun FreedomBoardDetailHeader(viewModel: FreedomBoardDetailViewModel) {
+        val subtitleText = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.title }
+            .observeAsState("")
+        val pictureUrl = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.picture }
+            .observeAsState("")
+        val nickNameText = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.nickName }
+            .observeAsState("")
+        val regDateText = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.regDate }
+            .observeAsState("")
+        val hitText = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.hit }
+            .observeAsState("")
+
+        Text(
+            text = subtitleText.value,
+            modifier = Modifier
+                .layoutId(ID_SUBTITLE)
+                .padding(start = 20.dp, end = 20.dp, bottom = 20.dp),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+        CoilImage(
+            data = pictureUrl.value,
+            modifier = Modifier
+                .layoutId(ID_PICTURE)
+                .width(74.dp)
+                .height(74.dp)
+                .padding(start = 20.dp, bottom = 8.dp),
+            contentScale = ContentScale.Crop
+        )
+        Text(
+            text = "${nickNameText.value}\n${regDateText.value}  조회수 ${hitText.value}",
+            modifier = Modifier
+                .layoutId(ID_POST_INFO)
+                .padding(start = 12.dp)
+        )
+        Divider(
+            color = Color.Gray,
+            modifier = Modifier.layoutId(ID_DIVIDER)
+        )
+    }
+
+    @Composable
+    private fun FreedomBoardDetailWebContent(viewModel: FreedomBoardDetailViewModel) {
+        val contentHtml = Transformations
+            .map(viewModel.freedomBoardDetailItem) { it.content }
+            .observeAsState("")
+        AndroidView(
+            viewBlock = ::WebView,
+            modifier = Modifier.layoutId(ID_WEB_CONTENT)
+        ) { webView ->
+            with(webView) {
+                @SuppressLint("SetJavaScriptEnabled")
+                settings.javaScriptEnabled = true
+                settings.useWideViewPort = true
+                settings.minimumFontSize = 30
+                setInitialScale(1)
+                loadDataWithBaseURL("", contentHtml.value, "text/html", "utf-8", "")
+            }
+        }
+    }
+
+    companion object {
+        private const val ID_SUBTITLE = "ID_SUBTITLE"
+        private const val ID_PICTURE = "ID_PICTURE"
+        private const val ID_POST_INFO = "ID_POST_INFO"
+        private const val ID_DIVIDER = "ID_DIVIDER"
+        private const val ID_WEB_CONTENT = "ID_WEB_CONTENT"
     }
 }
 
