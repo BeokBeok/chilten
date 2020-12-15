@@ -6,20 +6,28 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.viewinterop.AndroidView
+import com.beok.chilten.base.BaseTopAppBar
 import com.beok.chilten.ui.ChiltenTheme
 
 class ActivityFreedomBoardDetail {
 
     @Composable
-    fun Layout(viewModel: FreedomBoardDetailViewModel) {
+    fun Layout(
+        viewModel: FreedomBoardDetailViewModel,
+        navigationEvent: () -> Unit = { }
+    ) {
         ChiltenTheme {
-            FreedomBoardDetailScaffold(viewModel = viewModel)
+            FreedomBoardDetailScaffold(viewModel = viewModel, navigationEvent = navigationEvent)
         }
     }
 
     @Composable
-    fun FreedomBoardDetailScaffold(viewModel: FreedomBoardDetailViewModel) {
+    fun FreedomBoardDetailScaffold(
+        viewModel: FreedomBoardDetailViewModel,
+        navigationEvent: () -> Unit
+    ) {
         Scaffold(
+            topBar = { BaseTopAppBar(navigationEvent = navigationEvent) },
             bodyContent = { FreedomBoardDetailContent(viewModel = viewModel) }
         )
     }
