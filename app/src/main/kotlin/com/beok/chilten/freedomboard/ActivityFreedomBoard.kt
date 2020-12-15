@@ -13,14 +13,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumnForIndexed
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -29,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.beok.chilten.base.BaseTopAppBar
 import com.beok.chilten.ui.ChiltenTheme
 import dev.chrisbanes.accompanist.coil.CoilImage
 
@@ -56,7 +52,7 @@ class ActivityFreedomBoard {
         activityStartEvent: (boardIdx: Int, postIdx: Int) -> Unit
     ) {
         Scaffold(
-            topBar = { FreedomBoardTopAppBar(navigationEvent) },
+            topBar = { BaseTopAppBar(title = "자유게시판", navigationEvent = navigationEvent) },
             bodyContent = { FreedomBoardContent(viewModel, activityStartEvent) }
         )
     }
@@ -110,18 +106,5 @@ class ActivityFreedomBoard {
             }
             Spacer(modifier = Modifier.width(16.dp))
         }
-    }
-
-    @Composable
-    private fun FreedomBoardTopAppBar(navigationEvent: () -> Unit) {
-        TopAppBar(
-            title = { Text(text = "자유게시판") },
-            navigationIcon = {
-                IconButton(
-                    onClick = { navigationEvent.invoke() },
-                    icon = { Icon(Icons.Filled.KeyboardArrowLeft) }
-                )
-            }
-        )
     }
 }
