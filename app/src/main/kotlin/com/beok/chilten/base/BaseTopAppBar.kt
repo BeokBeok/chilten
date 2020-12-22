@@ -15,7 +15,7 @@ fun BaseTopAppBar(title: String = "", navigationEvent: () -> Unit) {
         navigationIcon = {
             IconButton(
                 onClick = { navigationEvent.invoke() },
-                icon = { Icon(Icons.Filled.KeyboardArrowLeft) }
+                content = { Icon(Icons.Filled.KeyboardArrowLeft) }
             )
         }
     )

@@ -22,8 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.AnimationClockAmbient
-import androidx.compose.ui.platform.ContextAmbient
+import androidx.compose.ui.platform.AmbientAnimationClock
+import androidx.compose.ui.platform.AmbientContext
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.R
 import com.beok.chilten.freedomboard.FreedomBoardActivity
@@ -52,7 +52,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
 @Composable
 private fun MiddleMenu() {
     Row {
-        val context = ContextAmbient.current
+        val context = AmbientContext.current
         makeVectorAssetList(
             idList = listOf(
                 R.drawable.ic_freedom_board,
@@ -77,7 +77,7 @@ private fun MiddleMenu() {
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    icon = { Icon(asset = vectorAsset) }
+                    content = { Icon(imageVector = vectorAsset) }
                 )
                 Text(
                     text = when (index) {
@@ -95,13 +95,13 @@ private fun MiddleMenu() {
 
 @Composable
 private fun HomeBanner(
+    modifier: Modifier = Modifier,
     pagerState: PagerState = run {
-        val clock = AnimationClockAmbient.current
+        val clock = AmbientAnimationClock.current
         remember(clock) {
             PagerState(clock)
         }
     },
-    modifier: Modifier = Modifier,
     bannerUrls: List<String>
 ) {
     if (bannerUrls.isEmpty()) return

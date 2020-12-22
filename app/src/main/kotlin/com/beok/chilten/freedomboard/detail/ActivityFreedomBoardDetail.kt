@@ -52,7 +52,7 @@ class ActivityFreedomBoardDetail {
     @Composable
     fun FreedomBoardDetailContent(viewModel: FreedomBoardDetailViewModel) {
         ConstraintLayout(
-            constraintSet = FreedomBoardDetailConstraints(),
+            constraintSet = getConstraintSet(),
             modifier = Modifier.fillMaxSize()
         ) {
             FreedomBoardDetailHeader(viewModel = viewModel)
@@ -61,7 +61,7 @@ class ActivityFreedomBoardDetail {
     }
 
     @Composable
-    private fun FreedomBoardDetailConstraints(): ConstraintSet =
+    private fun getConstraintSet(): ConstraintSet =
         ConstraintSet {
             val subtitle = createRefFor(ID_SUBTITLE)
             val picture = createRefFor(ID_PICTURE)

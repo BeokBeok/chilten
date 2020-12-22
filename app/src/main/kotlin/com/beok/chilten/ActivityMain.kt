@@ -16,7 +16,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.VectorAsset
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.club.ClubScreen
@@ -68,21 +68,21 @@ class ActivityMain {
     @Composable
     private fun ChiltenTopAppBar() {
         TopAppBar(
-            title = { Unit },
+            title = {  },
             navigationIcon = {
                 Icon(
-                    asset = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
+                    imageVector = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
                         .first()
                 )
             },
             actions = {
                 IconButton(
-                    onClick = { Unit },
-                    icon = { Icon(Icons.Outlined.Notifications) }
+                    onClick = {  },
+                    content = { Icon(Icons.Outlined.Notifications) }
                 )
                 IconButton(
-                    onClick = { Unit },
-                    icon = { Icon(Icons.Outlined.Person) }
+                    onClick = {  },
+                    content = { Icon(Icons.Outlined.Person) }
                 )
             }
         )
@@ -120,8 +120,8 @@ class ActivityMain {
             for (position in normalAssets.indices) {
                 BottomNavigationItem(
                     icon = {
-                        setupIcon(
-                            iconSize = iconSize,
+                        SetupIcon(
+                            modifier = iconSize,
                             isSelect = state.value == BottomNavigationType.findByOrdinal(position),
                             normalToSelectAsset = normalAssets[position] to selectAssets[position]
                         )
@@ -139,15 +139,15 @@ class ActivityMain {
     }
 
     @Composable
-    private fun setupIcon(
-        iconSize: Modifier = Modifier,
+    private fun SetupIcon(
+        modifier: Modifier = Modifier,
         isSelect: Boolean,
-        normalToSelectAsset: Pair<VectorAsset, VectorAsset>,
+        normalToSelectAsset: Pair<ImageVector, ImageVector>,
     ) {
         if (isSelect) {
-            Icon(asset = normalToSelectAsset.second, modifier = iconSize)
+            Icon(imageVector = normalToSelectAsset.second, modifier = modifier)
         } else {
-            Icon(asset = normalToSelectAsset.first, modifier = iconSize)
+            Icon(imageVector = normalToSelectAsset.first, modifier = modifier)
         }
     }
 }

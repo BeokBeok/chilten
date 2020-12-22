@@ -1,6 +1,6 @@
 object Version {
-    const val KOTLIN = "1.4.10"
-    const val COMPOSE = "1.0.0-alpha07"
+    const val KOTLIN = "1.4.21"
+    const val COMPOSE = "1.0.0-alpha08"
     const val HILT = "2.29.1-alpha"
 }
 
@@ -31,12 +31,12 @@ object Dependencies {
 object ComposeConfig {
     const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
-    const val UI_TOOLING = "androidx.ui:ui-tooling:${Version.COMPOSE}"
+    const val UI_TOOLING = "androidx.ui:ui-tooling:1.0.0-alpha07"
     const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Version.COMPOSE}"
 }
 
 object AccompanistConfig {
-    const val COIL = "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
+    const val COIL = "dev.chrisbanes.accompanist:accompanist-coil:0.4.0"
 }
 
 object HiltConfig {
