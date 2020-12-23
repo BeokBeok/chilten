@@ -31,7 +31,7 @@ object Dependencies {
 object ComposeConfig {
     const val UI = "androidx.compose.ui:ui:${Version.COMPOSE}"
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
-    const val UI_TOOLING = "androidx.ui:ui-tooling:1.0.0-alpha07"
+    const val UI_TOOLING = "androidx.compose.ui:ui-tooling:${Version.COMPOSE}"
     const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Version.COMPOSE}"
 }
 
