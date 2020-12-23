@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumnForIndexed
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -66,36 +66,37 @@ class ActivityFreedomBoard {
     ) {
         val freedomBoardList = viewModel.freedomBoardList.observeAsState(listOf())
 
-        LazyColumnForIndexed(
-            items = freedomBoardList.value,
-            modifier = Modifier.fillMaxWidth()
-        ) { index, item ->
-            if (index + 1 == viewModel.getFreedomBoardCount()) {
-                viewModel.fetchFreedomBoard(viewModel.getCurrentPage() + 1)
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-                    .clickable(onClick = {
-                        activityStartEvent.invoke(item.boardIdx, item.postIdx)
-                    }),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FreedomThumbnail(item)
-                Column(
-                    modifier = Modifier.fillMaxHeight(),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Text(text = item.title, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                    Text(text = "${item.nickName} ${item.registerDate}", fontSize = 12.sp)
-                    Text(text = "조회 ${item.hit}", fontSize = 12.sp)
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            itemsIndexed(freedomBoardList.value) { index, item ->
+                if (index + 1 == viewModel.getFreedomBoardCount()) {
+                    viewModel.fetchFreedomBoard(viewModel.getCurrentPage() + 1)
                 }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .clickable(onClick = {
+                            activityStartEvent.invoke(item.boardIdx, item.postIdx)
+                        }),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    FreedomThumbnail(item)
+                    Column(
+                        modifier = Modifier.fillMaxHeight(),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(text = item.title, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                        Text(text = "${item.nickName} ${item.registerDate}", fontSize = 12.sp)
+                        Text(text = "조회 ${item.hit}", fontSize = 12.sp)
+                    }
+                }
+                Divider(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = Color.Gray
+                )
             }
-            Divider(
-                modifier = Modifier.fillMaxWidth(),
-                color = Color.Gray
-            )
         }
     }
 
