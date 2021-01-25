@@ -1,11 +1,11 @@
 object Version {
     const val KOTLIN = "1.4.21"
-    const val COMPOSE = "1.0.0-alpha09"
+    const val COMPOSE = "1.0.0-alpha10"
     const val HILT = "2.29.1-alpha"
 }
 
 object ProjectConfig {
-    const val GRADLE = "com.android.tools.build:gradle:7.0.0-alpha03"
+    const val GRADLE = "com.android.tools.build:gradle:7.0.0-alpha04"
     const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KOTLIN}"
     const val HILT_ANDROID_GRADLE_PLUGIN =
         "com.google.dagger:hilt-android-gradle-plugin:${Version.HILT}"
