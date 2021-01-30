@@ -77,7 +77,12 @@ private fun MiddleMenu() {
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    content = { Icon(imageVector = vectorAsset) }
+                    content = {
+                        Icon(
+                            imageVector = vectorAsset,
+                            contentDescription = null
+                        )
+                    }
                 )
                 Text(
                     text = when (index) {

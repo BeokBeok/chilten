@@ -68,21 +68,32 @@ class ActivityMain {
     @Composable
     private fun ChiltenTopAppBar() {
         TopAppBar(
-            title = {  },
+            title = { },
             navigationIcon = {
                 Icon(
                     imageVector = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
-                        .first()
+                        .first(),
+                    contentDescription = null
                 )
             },
             actions = {
                 IconButton(
-                    onClick = {  },
-                    content = { Icon(Icons.Outlined.Notifications) }
+                    onClick = { },
+                    content = {
+                        Icon(
+                            imageVector = Icons.Outlined.Notifications,
+                            contentDescription = null
+                        )
+                    }
                 )
                 IconButton(
-                    onClick = {  },
-                    content = { Icon(Icons.Outlined.Person) }
+                    onClick = { },
+                    content = {
+                        Icon(
+                            imageVector = Icons.Outlined.Person,
+                            contentDescription = null
+                        )
+                    }
                 )
             }
         )
@@ -145,9 +156,17 @@ class ActivityMain {
         normalToSelectAsset: Pair<ImageVector, ImageVector>,
     ) {
         if (isSelect) {
-            Icon(imageVector = normalToSelectAsset.second, modifier = modifier)
+            Icon(
+                imageVector = normalToSelectAsset.second,
+                contentDescription = null,
+                modifier = modifier
+            )
         } else {
-            Icon(imageVector = normalToSelectAsset.first, modifier = modifier)
+            Icon(
+                imageVector = normalToSelectAsset.first,
+                contentDescription = null,
+                modifier = modifier
+            )
         }
     }
 }
