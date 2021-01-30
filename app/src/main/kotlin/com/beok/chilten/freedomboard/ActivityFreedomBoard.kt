@@ -107,6 +107,7 @@ class ActivityFreedomBoard {
             Box(modifier = Modifier.width(72.dp).height(72.dp)) {
                 CoilImage(
                     data = item.imageUrl,
+                    contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize()
                         .clip(MaterialTheme.shapes.medium)

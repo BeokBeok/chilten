@@ -120,6 +120,7 @@ private fun HomeBanner(
             Box {
                 CoilImage(
                     data = bannerUrls[page],
+                    contentDescription = null,
                     modifier = Modifier.clip(MaterialTheme.shapes.medium)
                 )
             }

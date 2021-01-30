@@ -121,6 +121,7 @@ class ActivityFreedomBoardDetail {
         )
         CoilImage(
             data = pictureUrl.value,
+            contentDescription = null,
             modifier = Modifier
                 .layoutId(ID_PICTURE)
                 .width(74.dp)
