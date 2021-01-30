@@ -2,7 +2,6 @@ package com.beok.chilten.home
 
 import android.content.Intent
 import android.widget.Toast
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.preferredHeight
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -37,13 +37,14 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
     val bannerUrls: List<String> by homeViewModel.bannerUrlList.observeAsState(listOf())
     Scaffold(
         bodyContent = {
-            ScrollableColumn(modifier = Modifier.fillMaxSize()) {
-                HomeBanner(
-                    modifier = Modifier.preferredHeight(280.dp),
-                    bannerUrls = bannerUrls
-                )
-
-                MiddleMenu()
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                item {
+                    HomeBanner(
+                        modifier = Modifier.preferredHeight(280.dp),
+                        bannerUrls = bannerUrls
+                    )
+                    MiddleMenu()
+                }
             }
         }
     )
