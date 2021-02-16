@@ -1,9 +1,9 @@
 package com.beok.chilten.freedomboard.detail
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.platform.setContent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,9 +1,9 @@
 package com.beok.chilten.freedomboard
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.platform.setContent
 import androidx.core.os.bundleOf
 import com.beok.chilten.ext.startActivity
 import com.beok.chilten.freedomboard.detail.FreedomBoardDetailActivity
