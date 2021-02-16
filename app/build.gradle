@@ -53,6 +53,8 @@ dependencies {
     implementation ComposeConfig.MATERIAL
     implementation ComposeConfig.UI_TOOLING
     implementation ComposeConfig.RUNTIME_LIVEDATA
+    implementation ComposeConfig.ACTIVITY
+    implementation ComposeConfig.CONSTRAINT_LAYOUT
 
     implementation AccompanistConfig.COIL
 
