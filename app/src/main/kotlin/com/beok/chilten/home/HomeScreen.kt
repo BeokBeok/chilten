@@ -29,7 +29,7 @@ import com.beok.chilten.R
 import com.beok.chilten.freedomboard.FreedomBoardActivity
 import com.beok.chilten.ui.pager.Pager
 import com.beok.chilten.ui.pager.PagerState
-import com.beok.chilten.util.makeVectorAssetList
+import com.beok.chilten.util.makePainterList
 import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
@@ -54,14 +54,14 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
 private fun MiddleMenu() {
     Row {
         val context = LocalContext.current
-        makeVectorAssetList(
+        makePainterList(
             idList = listOf(
                 R.drawable.ic_freedom_board,
                 R.drawable.ic_bowling_video,
                 R.drawable.ic_used_market,
                 R.drawable.ic_ranking_of_honor
             )
-        ).forEachIndexed { index, vectorAsset ->
+        ).forEachIndexed { index, painter ->
             Column(modifier = Modifier.weight(1f)) {
                 IconButton(
                     onClick = {
@@ -80,7 +80,7 @@ private fun MiddleMenu() {
                     modifier = Modifier.fillMaxWidth(),
                     content = {
                         Icon(
-                            imageVector = vectorAsset,
+                            painter = painter,
                             contentDescription = null
                         )
                     }

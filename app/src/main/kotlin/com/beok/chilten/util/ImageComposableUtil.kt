@@ -1,14 +1,14 @@
 package com.beok.chilten.util
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 
 @Composable
-fun makeVectorAssetList(idList: List<Int>): List<ImageVector> {
+fun makePainterList(idList: List<Int>): List<Painter> {
     if (idList.isNullOrEmpty()) return emptyList()
 
-    return mutableListOf<ImageVector>()
-        .apply { idList.forEach { this.add(vectorResource(id = it)) } }
+    return mutableListOf<Painter>()
+        .apply { idList.forEach { this.add(painterResource(id = it)) } }
         .toList()
 }

@@ -17,7 +17,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.club.ClubScreen
@@ -26,7 +26,7 @@ import com.beok.chilten.home.HomeScreen
 import com.beok.chilten.home.HomeViewModel
 import com.beok.chilten.myinfo.MyInfoScreen
 import com.beok.chilten.ui.ChiltenTheme
-import com.beok.chilten.util.makeVectorAssetList
+import com.beok.chilten.util.makePainterList
 
 class ActivityMain {
 
@@ -72,7 +72,7 @@ class ActivityMain {
             title = { },
             navigationIcon = {
                 Icon(
-                    imageVector = makeVectorAssetList(idList = listOf(R.drawable.ic_toolbar_home))
+                    painter = makePainterList(idList = listOf(R.drawable.ic_toolbar_home))
                         .first(),
                     contentDescription = null
                 )
@@ -106,14 +106,14 @@ class ActivityMain {
         state: MutableState<BottomNavigationType>
     ) {
         BottomNavigation(modifier = modifier) {
-            val (normalAssets, selectAssets) = makeVectorAssetList(
+            val (normalPainters, selectPainters) = makePainterList(
                 idList = listOf(
                     R.drawable.ic_navi_home,
                     R.drawable.ic_navi_bowling_gym,
                     R.drawable.ic_navi_club,
                     R.drawable.ic_navi_my_bowling
                 )
-            ) to makeVectorAssetList(
+            ) to makePainterList(
                 idList = listOf(
                     R.drawable.ic_navi_home_select,
                     R.drawable.ic_navi_bowling_gym_select,
@@ -129,13 +129,13 @@ class ActivityMain {
             )
             val iconSize = Modifier.size(24.dp)
 
-            for (position in normalAssets.indices) {
+            for (position in normalPainters.indices) {
                 BottomNavigationItem(
                     icon = {
                         SetupIcon(
                             modifier = iconSize,
                             isSelect = state.value == BottomNavigationType.findByOrdinal(position),
-                            normalToSelectAsset = normalAssets[position] to selectAssets[position]
+                            normalToSelectPainter = normalPainters[position] to selectPainters[position]
                         )
                     },
                     selected = state.value == BottomNavigationType.findByOrdinal(position),
@@ -154,17 +154,17 @@ class ActivityMain {
     private fun SetupIcon(
         modifier: Modifier = Modifier,
         isSelect: Boolean,
-        normalToSelectAsset: Pair<ImageVector, ImageVector>,
+        normalToSelectPainter: Pair<Painter, Painter>,
     ) {
         if (isSelect) {
             Icon(
-                imageVector = normalToSelectAsset.second,
+                painter = normalToSelectPainter.second,
                 contentDescription = null,
                 modifier = modifier
             )
         } else {
             Icon(
-                imageVector = normalToSelectAsset.first,
+                painter = normalToSelectPainter.first,
                 contentDescription = null,
                 modifier = modifier
             )
