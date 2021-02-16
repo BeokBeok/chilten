@@ -22,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalAnimationClock
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.beok.chilten.R
@@ -103,9 +102,8 @@ private fun MiddleMenu() {
 private fun HomeBanner(
     modifier: Modifier = Modifier,
     pagerState: PagerState = run {
-        val clock = LocalAnimationClock.current
-        remember(clock) {
-            PagerState(clock)
+        remember {
+            PagerState()
         }
     },
     bannerUrls: List<String>
