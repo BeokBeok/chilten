@@ -14,7 +14,8 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -39,7 +40,7 @@ class ActivityMain {
     @Composable
     private fun ChiltenScaffold(homeViewModel: HomeViewModel) {
         val bottomNavigationState: MutableState<BottomNavigationType> =
-            savedInstanceState { BottomNavigationType.HOME }
+            rememberSaveable { mutableStateOf(BottomNavigationType.HOME) }
         Scaffold(
             topBar = { ChiltenTopAppBar() },
             bodyContent = {
