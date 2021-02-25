@@ -35,7 +35,7 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 fun HomeScreen(homeViewModel: HomeViewModel) {
     val bannerUrls: List<String> by homeViewModel.bannerUrlList.observeAsState(listOf())
     Scaffold(
-        bodyContent = {
+        content = {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 item {
                     HomeBanner(

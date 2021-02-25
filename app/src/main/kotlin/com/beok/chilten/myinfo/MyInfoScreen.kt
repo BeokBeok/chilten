@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun MyInfoScreen() {
     Scaffold(
-        bodyContent = {
+        content = {
             Column(
                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                 verticalArrangement = Arrangement.Center,

@@ -56,7 +56,7 @@ class ActivityFreedomBoard {
     ) {
         Scaffold(
             topBar = { BaseTopAppBar(title = "자유게시판", navigationEvent = navigationEvent) },
-            bodyContent = { FreedomBoardContent(viewModel, activityStartEvent) }
+            content = { FreedomBoardContent(viewModel, activityStartEvent) }
         )
     }
 

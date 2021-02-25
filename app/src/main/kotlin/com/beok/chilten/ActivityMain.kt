@@ -43,7 +43,7 @@ class ActivityMain {
             rememberSaveable { mutableStateOf(BottomNavigationType.HOME) }
         Scaffold(
             topBar = { ChiltenTopAppBar() },
-            bodyContent = {
+            content = {
                 ChiltenBodyContent(
                     bottomNavigationState = bottomNavigationState,
                     homeViewModel = homeViewModel

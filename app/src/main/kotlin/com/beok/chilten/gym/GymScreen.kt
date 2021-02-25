@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun GymScreen() {
     Scaffold(
-        bodyContent = {
+        content = {
             Column(
                 modifier = Modifier.fillMaxWidth().fillMaxHeight(),
                 verticalArrangement = Arrangement.Center,

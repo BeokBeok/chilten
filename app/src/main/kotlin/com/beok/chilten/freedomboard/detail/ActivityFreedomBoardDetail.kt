@@ -45,7 +45,7 @@ class ActivityFreedomBoardDetail {
     ) {
         Scaffold(
             topBar = { BaseTopAppBar(navigationEvent = navigationEvent) },
-            bodyContent = { FreedomBoardDetailContent(viewModel = viewModel) }
+            content = { FreedomBoardDetailContent(viewModel = viewModel) }
         )
     }
 
