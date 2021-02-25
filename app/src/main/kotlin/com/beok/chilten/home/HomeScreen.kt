@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -39,7 +39,7 @@ fun HomeScreen(homeViewModel: HomeViewModel) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 item {
                     HomeBanner(
-                        modifier = Modifier.preferredHeight(280.dp),
+                        modifier = Modifier.height(280.dp),
                         bannerUrls = bannerUrls
                     )
                     MiddleMenu()
