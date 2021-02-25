@@ -70,12 +70,8 @@ class PagerState(
         if (velocity < 0 && currentPage == maxPage) return
         if (velocity > 0 && currentPage == minPage) return
 
-        val result = _currentPageOffset.animateDecay(velocity, exponentialDecay())
-
-        if (result.endReason != AnimationEndReason.Interrupted) {
-            _currentPageOffset.animateTo(currentPageOffset.roundToInt().toFloat())
-            selectPage()
-        }
+        _currentPageOffset.animateTo(currentPageOffset.roundToInt().toFloat())
+        selectPage()
     }
 
     override fun toString(): String = "PagerState{minPage=$minPage, maxPage=$maxPage, " +
