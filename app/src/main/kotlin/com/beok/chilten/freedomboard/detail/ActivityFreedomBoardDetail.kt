@@ -147,7 +147,7 @@ class ActivityFreedomBoardDetail {
             .map(viewModel.freedomBoardDetailItem) { it.content }
             .observeAsState("")
         AndroidView(
-            viewBlock = ::WebView,
+            factory = ::WebView,
             modifier = Modifier.layoutId(ID_WEB_CONTENT)
         ) { webView ->
             with(webView) {
