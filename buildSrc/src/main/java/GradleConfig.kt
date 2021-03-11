@@ -1,6 +1,6 @@
 object Version {
-    const val KOTLIN = "1.4.30"
-    const val COMPOSE = "1.0.0-beta01"
+    const val KOTLIN = "1.4.31"
+    const val COMPOSE = "1.0.0-beta02"
     const val HILT = "2.29.1-alpha"
 }
 
@@ -33,7 +33,7 @@ object ComposeConfig {
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
     const val UI_TOOLING = "androidx.compose.ui:ui-tooling:${Version.COMPOSE}"
     const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Version.COMPOSE}"
-    const val ACTIVITY = "androidx.activity:activity-compose:1.3.0-alpha03"
+    const val ACTIVITY = "androidx.activity:activity-compose:1.3.0-alpha04"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha03"
 }
 
