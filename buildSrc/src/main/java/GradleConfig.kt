@@ -1,6 +1,6 @@
 object Version {
-    const val KOTLIN = "1.4.32"
-    const val COMPOSE = "1.0.0-beta07"
+    const val KOTLIN = "1.5.10"
+    const val COMPOSE = "1.0.0-beta08"
     const val HILT = "2.29.1-alpha"
 }
 
