@@ -1,7 +1,7 @@
 object Version {
     const val KOTLIN = "1.5.10"
     const val COMPOSE = "1.0.0-rc02"
-    const val HILT = "2.29.1-alpha"
+    const val HILT = "2.37"
 }
 
 object ProjectConfig {
@@ -45,15 +45,12 @@ object HiltConfig {
     private const val HILT_JETPACK_VER = "1.0.0-alpha02"
 
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${Version.HILT}"
-    const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Version.HILT}"
-
-    const val HILT_LIFECYCLE_VM = "androidx.hilt:hilt-lifecycle-viewmodel:$HILT_JETPACK_VER"
-    const val HILT_COMPILER = "androidx.hilt:hilt-compiler:$HILT_JETPACK_VER"
+    const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Version.HILT}"
 }
 
 object NetworkConfig {
     private const val RETROFIT_VER = "2.9.0"
-    private const val MOSHI_VER = "1.10.0"
+    private const val MOSHI_VER = "1.12.0"
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VER"
 

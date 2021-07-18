@@ -59,8 +59,6 @@ dependencies {
     implementation AccompanistConfig.COIL
 
     implementation HiltConfig.HILT_ANDROID
-    implementation HiltConfig.HILT_LIFECYCLE_VM
-    kapt HiltConfig.HILT_ANDROID_COMPILER
     kapt HiltConfig.HILT_COMPILER
 
     implementation NetworkConfig.RETROFIT

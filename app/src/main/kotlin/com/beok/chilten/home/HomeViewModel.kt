@@ -1,6 +1,5 @@
 package com.beok.chilten.home
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.beok.chilten.domain.ChiltenRepository
 import com.beok.chilten.domain.banner.BannerRequest
 import com.beok.chilten.util.Constants
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel @ViewModelInject constructor(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val chiltenRepository: ChiltenRepository
 ) : ViewModel() {
 
