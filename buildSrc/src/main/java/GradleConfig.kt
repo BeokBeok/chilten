@@ -33,8 +33,8 @@ object ComposeConfig {
     const val MATERIAL = "androidx.compose.material:material:${Version.COMPOSE}"
     const val UI_TOOLING = "androidx.compose.ui:ui-tooling:${Version.COMPOSE}"
     const val RUNTIME_LIVEDATA = "androidx.compose.runtime:runtime-livedata:${Version.COMPOSE}"
-    const val ACTIVITY = "androidx.activity:activity-compose:1.3.0-alpha04"
-    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha03"
+    const val ACTIVITY = "androidx.activity:activity-compose:1.3.0-rc02"
+    const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha08"
 }
 
 object AccompanistConfig {
@@ -42,8 +42,6 @@ object AccompanistConfig {
 }
 
 object HiltConfig {
-    private const val HILT_JETPACK_VER = "1.0.0-alpha02"
-
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${Version.HILT}"
     const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Version.HILT}"
 }
