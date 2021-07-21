@@ -2,6 +2,7 @@ package com.beok.chilten.freedomboard.detail
 
 import android.annotation.SuppressLint
 import android.webkit.WebView
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,10 +23,12 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.lifecycle.Transformations
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 import com.beok.chilten.base.BaseTopAppBar
 import com.beok.chilten.ui.ChiltenTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
 
+@ExperimentalCoilApi
 class ActivityFreedomBoardDetail {
 
     @Composable
@@ -119,8 +122,8 @@ class ActivityFreedomBoardDetail {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
-        CoilImage(
-            data = pictureUrl.value,
+        Image(
+            painter = rememberImagePainter(data = pictureUrl.value),
             contentDescription = null,
             modifier = Modifier
                 .layoutId(ID_PICTURE)

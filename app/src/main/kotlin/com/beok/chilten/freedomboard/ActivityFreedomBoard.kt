@@ -1,5 +1,6 @@
 package com.beok.chilten.freedomboard
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -27,10 +28,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 import com.beok.chilten.base.BaseTopAppBar
 import com.beok.chilten.ui.ChiltenTheme
-import dev.chrisbanes.accompanist.coil.CoilImage
 
+@ExperimentalCoilApi
 class ActivityFreedomBoard {
 
     @Composable
@@ -104,9 +107,11 @@ class ActivityFreedomBoard {
     @Composable
     private fun FreedomThumbnail(item: FreedomBoardItem) {
         if (item.imageUrl.isNotEmpty()) {
-            Box(modifier = Modifier.width(72.dp).height(72.dp)) {
-                CoilImage(
-                    data = item.imageUrl,
+            Box(modifier = Modifier
+                .width(72.dp)
+                .height(72.dp)) {
+                Image(
+                    painter = rememberImagePainter(data = item.imageUrl),
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxSize()

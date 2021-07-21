@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
 import com.beok.chilten.club.ClubScreen
 import com.beok.chilten.gym.GymScreen
 import com.beok.chilten.home.HomeScreen
@@ -28,6 +29,7 @@ import com.beok.chilten.myinfo.MyInfoScreen
 import com.beok.chilten.ui.ChiltenTheme
 import com.beok.chilten.util.makePainterList
 
+@ExperimentalCoilApi
 class ActivityMain {
 
     @Composable

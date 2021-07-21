@@ -2,6 +2,7 @@ package com.beok.chilten.home
 
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,13 +25,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 import com.beok.chilten.R
 import com.beok.chilten.freedomboard.FreedomBoardActivity
 import com.beok.chilten.ui.pager.Pager
 import com.beok.chilten.ui.pager.PagerState
 import com.beok.chilten.util.makePainterList
-import dev.chrisbanes.accompanist.coil.CoilImage
 
+@ExperimentalCoilApi
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel) {
     val bannerUrls: List<String> by homeViewModel.bannerUrlList.observeAsState(listOf())
@@ -98,6 +101,7 @@ private fun MiddleMenu() {
     }
 }
 
+@ExperimentalCoilApi
 @Composable
 private fun HomeBanner(
     modifier: Modifier = Modifier,
@@ -117,8 +121,8 @@ private fun HomeBanner(
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Box {
-                CoilImage(
-                    data = bannerUrls[page],
+                Image(
+                    painter = rememberImagePainter(data = bannerUrls[page]),
                     contentDescription = null,
                     modifier = Modifier.clip(MaterialTheme.shapes.medium)
                 )
