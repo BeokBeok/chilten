@@ -3,7 +3,7 @@
 Jetpack Compose 를 활용하여 칠텐 앱의 배너와 자유게시판 화면을 구현합니다.
 
 ## Compose 적용 버전
-- Compose : 1.0.0-rc02
+- Compose : 1.0.0
 - Activity : 1.3.0-rc02
 - ConstraintLayout : 1.0.0-alpha08
 - Accompanist-Coil : 0.14.0
